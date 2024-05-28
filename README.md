@@ -1,4 +1,4 @@
-# code-with-chekki
+# code-with-application
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
