@@ -1,56 +1,58 @@
-# code-with-application
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+# Restaurant Feedback API
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+This project is a Quarkus-based application for managing restaurant feedback. It includes APIs to create, retrieve, update, and delete feedback records stored in a PostgreSQL database. The API documentation is provided using Swagger UI.
 
-## Running the application in dev mode
+## Table of Contents
 
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
-```
+- [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Running the Application](#running-the-application)
+- [API Documentation](#api-documentation)
+- [Generated Code](#generated-code)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+## Getting Started
 
-## Packaging and running the application
+Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
 
-The application can be packaged using:
-```shell script
-./mvnw package
-```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+### Prerequisites
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+- Java 21 or higher
+- Maven 3.6.3 or 
+- PG Admin for PostgreSQL 
+- Docker (for running PostgreSQL)
+- Quarkus CLI (optional, but recommended)
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+### Running the Application
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+Clone the dev.rushikeshj.repository
 
-## Creating a native executable
+- create Demo_Database in postgres
+  - create table FeedbackDetails
+  
+- create docker image of postgres
+  -docker run --name postgres -e POSTGRES_USER=quarkus -e POSTGRES_PASSWORD=quarkus -e POSTGRES_DB=feedback -p 5432:5432 -d postgres:latest
+  
+-Configure the Database:
 
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
+ -Update your application.properties file with your database configuration:
+   -quarkus.datasource.db-kind=postgresql
+   -quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/feedback
+   -quarkus.datasource.username=quarkus
+   -quarkus.datasource.password=quarkus
+   -quarkus.hibernate-orm.database.generation=update
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+Build and run the application:
 
-You can then execute your native executable with: `./target/code-with-chekki-1.0.0-SNAPSHOT-runner`
+./mvnw clean compile quarkus:dev(available at http://localhost:8080)
 
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
+###API Documentation
+-Swagger UI is available for interacting with the API. You can access it at:
 
-## Provided Code
+--http://localhost:8080/swagger-ui
+ 
 
-### REST
-
-Easily start your REST Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+   
